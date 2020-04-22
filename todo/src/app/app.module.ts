@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component'
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http'
         WelcomeComponent,
         LoginComponent,
         ErrorComponent,
-        ListTodosComponent
+        ListTodosComponent,
+        SignupComponent
     ],
     imports: [
         BrowserModule,
