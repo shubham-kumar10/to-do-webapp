@@ -5,8 +5,9 @@ import {
     Validators,
     FormControl,
 } from '@angular/forms';
-import { UserServiceService } from '../user-service.service';
-import { User } from '../User';
+
+import { UserService } from '../services/user.service';
+import { User } from '../model/user';
 
 @Component({
     selector: 'app-signup',
@@ -14,13 +15,13 @@ import { User } from '../User';
     styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-    signUpForm: FormGroup;
-    user: User;
-    userCreated: boolean = null;
-    error: string;
+    public signUpForm: FormGroup;
+    public user: User;
+    public userCreated: boolean = null;
+    public error: string;
     constructor(
         private formBuilder: FormBuilder,
-        private _userService: UserServiceService
+        private userService: UserService
     ) {}
 
     ngOnInit() {
@@ -80,7 +81,7 @@ export class SignupComponent implements OnInit {
             password: this.signUpForm.value['password'],
             username: this.signUpForm.value['username'],
         };
-        this._userService.addUser(this.user).subscribe(
+        this.userService.addUser(this.user).subscribe(
             (data) => {
                 this.userCreated = true;
                 this.error = 'Signed Up Successfull.Go to Login Page';
