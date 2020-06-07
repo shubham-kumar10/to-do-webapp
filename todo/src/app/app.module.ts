@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component'
+import { FooterComponent } from './footer/footer.component';
+import { TaskFormComponent } from './task-form/task-form.component'
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { FooterComponent } from './footer/footer.component'
         ListTodosComponent,
         SignUpComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        TaskFormComponent
     ],
     imports: [
         BrowserModule,

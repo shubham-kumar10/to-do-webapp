@@ -13,9 +13,17 @@ export class UserService {
     public isBussiness: boolean;
     constructor(private _httpClient: HttpClient) { }
 
+    public firstname: string;
+    public lastname: string;
+    public userid: string;
+
     addUser(user: User): Observable<any> {
         console.log("Inside add user of service ")
         console.log(user)
         return this._httpClient.post<any>(this.url + "signUp", user)
+    }
+
+    getUser() {
+
     }
 }

@@ -1,0 +1,34 @@
+<!-- Card -->
+<div class="card">
+
+    <!-- Card body -->
+    <div class="card-body">
+
+        <!-- Material form register -->
+        <form [formGroup]="taskForm" (submit)="addTask()">
+            <p class="h4 text-center py-4">New Task</p>
+
+            <!-- Material input text -->
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="title">
+                <label for="materialFormCardNameEx" class="font-weight-light">Title</label>
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-user prefix grey-text"></i>
+                <input type="text" id="materialFormCardNameEx" class="form-control" formControlName="description">
+                <label for="materialFormCardNameEx" class="font-weight-light">Title</label>
+            </div>
+
+            <div class="text-center py-4 mt-3">
+                <button class="btn btn-cyan" type="submit">Add</button>
+            </div>
+        </form>
+        <!-- Material form register -->
+
+    </div>
+    <!-- Card body -->
+
+</div>
+<!-- Card -->

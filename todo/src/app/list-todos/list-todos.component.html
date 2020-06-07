@@ -1,1 +1,4 @@
-<p>list-todos works!</p>
+<app-task-form></app-task-form>
+<div *ngFor="let item of taskList">
+    {{item|json}}
+</div>

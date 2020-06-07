@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuild: FormBuilder,
         public authService: AuthenticationService,
+        public userService: UserService,
         private router: Router
     ) { }
 
@@ -52,12 +54,12 @@ export class LoginComponent implements OnInit {
                     console.log(data);
                     this.authService.setToken(data.token);
                     this.error = 'Logged In successfully';
-                    this.authService.username = this.getUsername();
-                    this.authService.loggedIn = true;
+                    this.authService.userId = data.id;
+                    this.userService.firstname = data.firstname;
+                    this.userService.lastname = data.lastname;
                     this.authService.loggedIn = true;
                     this.authService.validCredentials = true;
-                    this.authService.setUserId();
-                    this.router.navigate(['/search-bar']);
+                    this.router.navigate(['/tasks']);
                 },
                 (error) => {
                     this.authService.validCredentials = false;

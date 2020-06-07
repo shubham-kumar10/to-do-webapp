@@ -28,22 +28,19 @@ export class AuthenticationService {
         return this.token;
     }
 
-    public setUserId() {
-        const sum = 0;
-        for (let i = 0; i < this.username.length; i++) {
-            this.userId = this.username.charCodeAt(i) + this.userId;
-        }
-    }
-
     authenticate(user: string, password: string): Observable<any> {
         let headers = new HttpHeaders();
         headers = headers.set('Authorization', 'Basic ' + btoa(user + ':' + password));
         return this.httpClient.get(this.authenticationApiUrl, { headers })
     }
 
-    public logout(): void {
+    logout() {
         this.loggedIn = false;
         this.setToken(null);
-        this.userId = null;
+        this.router.navigate(['/welcome'])
+    }
+
+    getUser(): Observable<any> {
+        return this.httpClient.get(environment.baseUrl + "findUser/" + this.username);
     }
 }
