@@ -9,14 +9,13 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class UserService {
-    url: string = environment.baseUrl + 'auth-service/';
-
-    constructor(private router: Router, private _httpClient: HttpClient) {}
+    public url: string = environment.baseUrl;
+    public isBussiness: boolean;
+    constructor(private _httpClient: HttpClient) { }
 
     addUser(user: User): Observable<any> {
-        console.log('Inside add user of service ');
-        console.log(user);
-        return this._httpClient.post<any>(this.url + 'users', user);
-        this.router.navigate(['login']);
+        console.log("Inside add user of service ")
+        console.log(user)
+        return this._httpClient.post<any>(this.url + "signUp", user)
     }
 }

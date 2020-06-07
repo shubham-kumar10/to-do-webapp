@@ -1,92 +1,72 @@
-<div class="container d-flex justify-content-center">
-    <div class="col-md-6 mt-6">
-        <div class="card mt-5">
-            <!-- FORM -->
-            <form class="m-3" [formGroup]="signUpForm" (submit)="addUser()">
-                <div class="row">
-                    <h2 class="col-lg-12 mb-4">Sign Up</h2>
-                    <div class="col-lg-11 alert alert-danger mx-3"
-                        *ngIf="userCreated == false">
-                        {{ this.error }}
-                    </div>
-                    <div class="col-lg-11 alert alert-success mx-3"
-                        *ngIf="userCreated == true">
-                        {{ this.error }}
-                    </div>
-                    <div class="col-lg-12">
-                        Username
-                        <input type="text" class="col-lg-6 form-control mb-2
-                            mr-sm-2" placeholder="Enter Username"
-                            formControlName="username" id="username" />
-                        <div class="text-danger" *ngIf="username.invalid &&
-                            username.errors.required &&
-                            username.touched">
-                            Username is required
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        Fistname
-                        <input type="text" class="form-control mb-2 mr-sm-2"
-                            placeholder="Enter First Name"
-                            formControlName="firstname" id="firstname" />
-                        <div class="text-danger" *ngIf="firstname.invalid &&
-                            firstname.errors.required &&
-                            firstname.touched">
-                            First Name is required
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        Lastname
-                        <input type="text" class="form-control mb-2 mr-sm-2"
-                            type="text" placeholder="Enter Last Name"
-                            formControlName="lastname" id="lastname" />
-                        <div class="text-danger" *ngIf="lastname.invalid &&
-                            lastname.errors.required &&
-                            lastname.touched">
-                            Last Name is required
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        Password
-                        <input type="password" class="form-control mb-2 mr-sm-2"
-                            placeholder="Enter Password"
-                            formControlName="password" id="password" />
-                        <div class="text-danger" *ngIf="password.invalid &&
-                            password.errors.required &&
-                            password.touched">
-                            Password is required
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        Confirm Password
-                        <input type="password" class="form-control mb-2 mr-sm-2"
-                            placeholder="Enter Confirm Password"
-                            formControlName="confirmPassword"
-                            id="confirmPassword" />
-                        <div class="text-danger" *ngIf="confirmPassword.invalid
-                            &&
-                            confirmPassword.errors.required &&
-                            confirmPassword.touched">
-                            Confirm the Password
-                        </div>
-                        <div class="text-danger"
-                            *ngIf="signUpForm.get('confirmPassword').hasError('nomatch')">
-                            Password and Confirm Password do not match
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 mt-3">
-                        <button type="submit" class="btn add-to-favorites
-                            float-left" [disabled]="!signUpForm.valid">
-                            Sign Up
-                        </button>
+<div class="container">
+    <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-flex">
+                    <div class="flex-grow-1 near-moon-gradient">
+                        <img *ngIf="!signup.isBussiness" class="card-img-top img-fluid justify-content-center"
+                            src="assets\img\tours\tour-5.png">
+                        <img *ngIf="signup.isBussiness" class="card-img-top img-fluid justify-content-center"
+                            src="assets\img\tours\tour-6.png">
                     </div>
                 </div>
-            </form>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">Create an Account!</h4>
+                        </div>
+                        <form class="user" [formGroup]="signUpForm" (submit)="addUser()">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user"
+                                        type="text" id="exampleFirstName" placeholder="First Name"
+                                        formControlName="firstname">
+                                </div>
+                                <div class="col-sm-6"><input class="form-control form-control-user" type="text"
+                                        id="exampleFirstName" placeholder="Last Name" formControlName="lastname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="form-group col-sm-6"><input class="form-control form-control-user"
+                                        type="email" id="exampleInputEmail" aria-describedby="emailHelp"
+                                        placeholder="Email Address" formControlName="username">
+                                </div>
+                                <div class="col-sm-6"><input class="form-control form-control-user" type="text"
+                                        id="exampleContact" placeholder="Contact Number" formControlName="contact">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input class="form-control form-control-user" type="password"
+                                        id="examplePasswordInput" placeholder="Password" formControlName="password">
+                                </div>
+                                <div class="col-sm-6"><input class="form-control form-control-user" type="password"
+                                        id="exampleRepeatPasswordInput" placeholder="Repeat Password"
+                                        formControlName="confirmPassword">
+                                </div>
+                                <div class="text-danger"
+                                    *ngIf="confirmPassword.invalid && confirmPassword.errors.required && confirmPassword.touched">
+                                    Confirm the Password</div>
+                                <div class="text-danger" *ngIf="signUpForm.get('confirmPassword').hasError('nomatch')">
+                                    Password
+                                    and Confirm Password do not match</div>
+                            </div>
+                            <button class="btn btn-primary btn-block text-white btn-user" type="submit">
+                                Register Account
+                            </button>
+                            <hr>
+                        </form>
+                        <div class="row">
+                            <div class="col-4">
+                                <a class="small">Forgot Password?</a>
+                            </div>
+                            <div class="offset-3 col-5">
+                                <a class="small" (click)="goToLogin()">Already have an account?
+                                    Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

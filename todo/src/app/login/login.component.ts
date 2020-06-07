@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-import { ListService } from '../services/list.service';
 
 @Component({
     selector: 'app-login',
@@ -16,10 +15,9 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private formBuild: FormBuilder,
-        private authService: AuthenticationService,
-        private router: Router,
-        private listService: ListService
-    ) {}
+        public authService: AuthenticationService,
+        private router: Router
+    ) { }
 
     ngOnInit() {
         this.loginForm = this.formBuild.group({
@@ -59,11 +57,6 @@ export class LoginComponent implements OnInit {
                     this.authService.loggedIn = true;
                     this.authService.validCredentials = true;
                     this.authService.setUserId();
-                    if (data.role === 'ADMIN') {
-                        this.listService.isAdmin = true;
-                    } else {
-                        this.listService.isAdmin = false;
-                    }
                     this.router.navigate(['/search-bar']);
                 },
                 (error) => {

@@ -1,77 +1,91 @@
-import { Component, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    FormBuilder,
-    Validators,
-    FormControl,
-} from '@angular/forms';
-
-import { UserService } from '../services/user.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { User } from '../model/user';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
-    selector: 'app-signup',
+    selector: 'app-sign-up',
     templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.css'],
+    styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignUpComponent implements OnInit {
+
     public signUpForm: FormGroup;
     public user: User;
     public userCreated: boolean = null;
     public error: string;
-    constructor(
-        private formBuilder: FormBuilder,
-        private userService: UserService
-    ) {}
+
+    constructor(private formBuilder: FormBuilder,
+        private UserService: UserService,
+        private router: Router,
+        public signup: UserService
+    ) { }
 
     ngOnInit() {
         this.signUpForm = this.formBuilder.group({
-            username: ['', [Validators.required, this.isUsernameTaken]],
-            firstname: ['', [Validators.required]],
-            lastname: ['', [Validators.required]],
-            password: ['', [Validators.required]],
-            confirmPassword: [
-                '',
-                [Validators.required, this.matchConfirmPassword.bind(this)],
-            ],
-        });
+            username: ['', [
+                Validators.required,
+                this.isUsernameTaken
+            ]],
+            firstname: ['', [
+                Validators.required
+            ]],
+            lastname: ['', [
+                Validators.required
+            ]],
+            password: ['', [
+                Validators.required
+            ]],
+            confirmPassword: ['', [
+                Validators.required,
+                this.matchConfirmPassword.bind(this)
+            ]],
+            contact: ['', [
+                Validators.required,
+            ]]
+        })
     }
-    get username() {
+    public get username() {
         return this.signUpForm.get('username');
     }
-    get firstname() {
+    public get firstname() {
         return this.signUpForm.get('firstname');
     }
-    get lastname() {
+    public get lastname() {
         return this.signUpForm.get('lastname');
     }
-    get password() {
+    public get password() {
         return this.signUpForm.get('password');
     }
-    get confirmPassword() {
+    public get confirmPassword() {
         return this.signUpForm.get('confirmPassword');
     }
-    matchConfirmPassword(formControl: FormControl): { [s: string]: boolean } {
+    public get contact() {
+        return this.signUpForm.get('contact')
+    }
+    public matchConfirmPassword(formControl: FormControl): { [s: string]: boolean } {
         if (this.signUpForm) {
-            if (
-                formControl.value &&
-                formControl.value.length > 0 &&
-                formControl.value !== this.signUpForm.get('password').value
-            ) {
-                return { nomatch: true };
+            if (formControl.value && formControl.value.length > 0 && formControl.value !== this.signUpForm.get('password').value) {
+                return { 'nomatch': true };
             }
         }
         return null;
     }
     isUsernameTaken(formControl: FormControl): { [s: string]: boolean } {
         if (formControl.value === 'admin') {
-            return { userNameTaken: true };
+            return { 'userNameTaken': true };
         } else {
             return null;
         }
+
     }
 
-    addUser() {
+    public goToLogin(): void {
+        this.router.navigate(['login'])
+    }
+
+    public addUser(): void {
         console.log(this.signUpForm.value['firstname']);
 
         this.user = {
@@ -79,22 +93,27 @@ export class SignupComponent implements OnInit {
             firstName: this.signUpForm.value['firstname'],
             lastName: this.signUpForm.value['lastname'],
             password: this.signUpForm.value['password'],
-            username: this.signUpForm.value['username'],
+            userName: this.signUpForm.value['username'],
+            contactNumber: this.signUpForm.value['contact']
         };
-        this.userService.addUser(this.user).subscribe(
-            (data) => {
-                this.userCreated = true;
-                this.error = 'Signed Up Successfull.Go to Login Page';
-                console.log(this.userCreated);
-            },
-            (error) => {
-                console.log('error');
+        this.UserService.addUser(this.user).subscribe(data => {
+            this.userCreated = true;
+            this.error = "Signed Up Successfull.Go to Login Page"
+            console.log(this.userCreated)
+            this.router.navigate['login'];
+        },
+            error => {
+                console.log("error")
                 if (error.status == 400) {
-                    this.error = 'User Already Exists';
+                    this.error = "User Already Exists";
                     this.userCreated = false;
                 }
                 console.log(this.error);
             }
         );
+    }
+
+    public navigateToLogin(): void {
+        this.router.navigate(['login']);
     }
 }

@@ -9,7 +9,9 @@ import { ErrorComponent } from './error/error.component';
 import { ListTodosComponent } from './list-todos/list-todos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
-import { SignupComponent } from './signup/signup.component'
+import { SignUpComponent } from './signup/signup.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component'
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { SignupComponent } from './signup/signup.component'
         LoginComponent,
         ErrorComponent,
         ListTodosComponent,
-        SignupComponent
+        SignUpComponent,
+        HeaderComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
