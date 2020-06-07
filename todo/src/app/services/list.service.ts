@@ -17,6 +17,7 @@ export class ListService {
         private authService: AuthenticationService) { }
 
     public userId = this.authService.userId;
+    public taskList: Task[];
 
     addTask(task: Task): Observable<any> {
         console.log("Inside add task of service ")

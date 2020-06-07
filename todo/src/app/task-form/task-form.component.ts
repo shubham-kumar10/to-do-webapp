@@ -40,7 +40,6 @@ export class TaskFormComponent implements OnInit {
     }
 
     public addTask(): void {
-
         this.task = {
             id: null,
             description: this.taskForm.value['description'],
@@ -65,10 +64,6 @@ export class TaskFormComponent implements OnInit {
                 console.log(this.error);
             }
         );
+        this.router.navigate(['tasks'])
     }
-
-    public navigateToLogin(): void {
-        this.router.navigate(['login']);
-    }
-
 }

@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { TaskFormComponent } from './task-form/task-form.component'
+import { TaskFormComponent } from './task-form/task-form.component';
+import { TaskInfoComponent } from './task-info/task-info.component'
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { TaskFormComponent } from './task-form/task-form.component'
         SignUpComponent,
         HeaderComponent,
         FooterComponent,
-        TaskFormComponent
+        TaskFormComponent,
+        TaskInfoComponent
     ],
     imports: [
         BrowserModule,

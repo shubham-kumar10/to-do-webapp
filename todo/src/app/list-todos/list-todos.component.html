@@ -1,4 +1,12 @@
-<app-task-form></app-task-form>
-<div *ngFor="let item of taskList">
-    {{item|json}}
+<div class="row">
+    <div class="offset-1 col-4">
+        <div class="card-deck my-5">
+            <div *ngFor="let list of taskList">
+                <app-task-info [data]="list">
+                </app-task-info>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
 </div>
