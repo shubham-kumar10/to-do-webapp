@@ -13,7 +13,7 @@ export class AppComponent {
     constructor(private authService: AuthenticationService, public router: Router) {
     }
 
-    public ngOnInit(): void {
-        this.router.navigate(['signup']);
-    }
+    // public ngOnInit(): void {
+    //     this.router.navigate(['signup']);
+    // }
 }

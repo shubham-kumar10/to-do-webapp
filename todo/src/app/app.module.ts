@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +15,10 @@ import { SignUpComponent } from './signup/signup.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TaskFormComponent } from './task-form/task-form.component';
-import { TaskInfoComponent } from './task-info/task-info.component'
+import { TaskInfoComponent } from './task-info/task-info.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component'
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { DarkHeaderComponent } from './dark-header/dark-header.component';
 
 @NgModule({
     declarations: [
@@ -26,14 +31,19 @@ import { TaskInfoComponent } from './task-info/task-info.component'
         HeaderComponent,
         FooterComponent,
         TaskFormComponent,
-        TaskInfoComponent
+        TaskInfoComponent,
+        NavBarComponent,
+        SidebarComponent,
+        DarkHeaderComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        BsDropdownModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
