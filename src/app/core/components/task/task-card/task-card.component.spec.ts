@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DarkHeaderComponent } from './dark-header.component';
+import { TaskCardComponent } from './task-card.component';
 
-describe('DarkHeaderComponent', () => {
-  let component: DarkHeaderComponent;
-  let fixture: ComponentFixture<DarkHeaderComponent>;
+describe('TaskCardComponent', () => {
+  let component: TaskCardComponent;
+  let fixture: ComponentFixture<TaskCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DarkHeaderComponent ]
+      declarations: [ TaskCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DarkHeaderComponent);
+    fixture = TestBed.createComponent(TaskCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

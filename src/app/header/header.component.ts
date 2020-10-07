@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../services/app.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
-    constructor(public authService: AuthenticationService, public userService: UserService) { }
+    constructor(
+        public authService: AuthenticationService,
+        public userService: UserService,
+        private appService: AppService
+    ) { }
 
-    isLoggedIn: boolean = false;
+    isLoggedIn = false;
+    isCollapsed = true;
 
     ngOnInit(): void {
     }
@@ -20,7 +26,7 @@ export class HeaderComponent implements OnInit {
     loggedIn(): boolean {
         if (this.authService.loggedIn) {
             this.isLoggedIn = true;
-            return true
+            return true;
         }
         else {
             this.isLoggedIn = false;
@@ -30,5 +36,12 @@ export class HeaderComponent implements OnInit {
 
     exit() {
         window.location.reload();
+    }
+
+    toggleSidebarPin() {
+      this.appService.toggleSidebarPin();
+    }
+    toggleSidebar() {
+      this.appService.toggleSidebar();
     }
 }
